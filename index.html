@@ -1,0 +1,32 @@
+<html>
+<head>
+<script src="./SerialPort.js"></script>
+<script>
+/**
+ * This is the callback function of the class SerialPort.
+ * @param sCmd    command
+ * @param Data    additional Data
+ */
+function callbackSerialPort( sCmd, Data )
+{
+  document.getElementById( "output" ).value += "cmd'"+sCmd+"' data'"+Data+"'\n";
+}
+try
+{  var Serial = new SerialPort();
+   if( ! Serial.isAvailable() )
+   {  alert( "webapi Serial is NOT available on your browser!" ); }
+}
+catch( error )
+{  alert( "sorry, anything goes wrong here!" ); }
+</script>
+</head>
+
+<body>
+<button onclick="Serial.open();">Open</button>
+<button onclick="Serial.write('hallo');">Write</button>
+<button onclick="Serial.writeln('hallo');">Writeln</button>
+<button onclick="Serial.close();">Close</button>
+<p>Output</p>
+<textarea id="output" style="width:100%;background-color:#eee;border:1px solid black;height:20em;"></textarea>
+</body>
+</html>
